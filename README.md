@@ -5,7 +5,7 @@ A web application for finding information about movies, tv shows, etc to find ou
 ## Trying to force a merge conflic
 
 * Test Test test test
-* Lorem ipsum
+* Lorem (ipsum)[http://google.com]
 
 Does _this_ cause a [conflict](http://www.google.com)?
 
