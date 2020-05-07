@@ -7,7 +7,7 @@ A web application for finding information about movies, tv shows, etc to find ou
 * Test Test test test
 * Lorem ipsum
 
-Does _this_ cause a conflict?
+Does _this_ cause a [conflict](http://www.google.com)?
 
 ## Or maybe this?
 
