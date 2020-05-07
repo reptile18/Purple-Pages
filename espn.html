@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>watchESPN api</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.ajax({
+	url: "http://api.espn.com/v1/watch/listings",
+	data: {
+		// enter your developer api key here
+		apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
+		// the type of data you're expecting back from the api
+		_accept: "application/json"
+	},
+	dataType: "jsonp",
+	success: function(data) {
+		// create an unordered list of headlines
+		var ul = $('<ul/>');
+		$.each(data.listings, function() {
+			var li = $('<li/>').text(this.name);
+			ul.append(li)
+		});
+        $.each(data.listings, function() {
+			var li = $('<li/>').text(this.startTime);
+			ul.append(li)
+		});
+        $.each(data.listings, function() {
+			var li = $('<li/>').text(this.program.sportLevel);
+			ul.append(li)
+		});
+        $.each(data.listings, function() {
+			var li = $('<li/>').text(this.competitors);
+			ul.append(li)
+		});
+        $.each(data.categories, function() {
+			var li = $('<li/>').text(this.sportId);
+			ul.append(li)
+		});
+		// append this list to the document body
+		$('body').append(ul);
+	},
+	error: function() {
+		 // handle the error
+	}
+    });
+    </script>
+</body>
+</html>
