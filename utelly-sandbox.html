@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="icons/foundation-icons.css">
+    <link rel="stylesheet" href="utelly-sandbox.css">
+    <!--<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body class="grid-container">
+    <main class="grid-x grid-margin-x">
+      <aside class="cell large-4">
+        <form id="formSearchMovieTV">
+          <label>Search for a movie or tv show: <i class="fi-magnifying-glass"></i></label>
+          <div class="input-group">
+            <input class="input-group-field" id="inputSearch" type="text" placeholder="Enter the name of a movie or tv show">
+            <button class="input-group-button button" type="submit"><i class="fi-magnifying-glass"></i></button>
+          </div>
+        </form>
+      </aside>
+      <article id="resultsSection" class="cell large-8 invisible">
+        <h2>Results</h2>
+        <small>Your search for <span id="echoSearchTerm"></span> returned <span id="countResults"></span> results.</small>
+        <div id="cards" class="grid-x grid-margin-x"></div>
+      </article>
+    </main>
+    <script src="utelly-sandbox.js"></script>
+  </body>
+
+</html>
