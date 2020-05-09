@@ -1,3 +1,12 @@
 .locationIcon {
   height: 30px;
 }
+
+.marginalizedLabel {
+  margin-right: 0.1rem;
+  margin-top: 0.1rem;
+}
+
+.moviePoster {
+  width:100%;
+}

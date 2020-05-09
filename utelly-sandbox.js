@@ -1,7 +1,9 @@
 $(document).ready(function () {
   var country = "us";
   //var searchTerm = "Torchwood"
-  const apiKey = "2209a3031amsh75255ffc5be015dp160642jsn9d2a71de459c";
+  const utelly_apiKey = "2209a3031amsh75255ffc5be015dp160642jsn9d2a71de459c";
+  const omdb_apikey = "trilogy"; // "8cca386c" // not active yet
+  var popup = new Foundation.Reveal($("#sectionMovieInfo"));
 
   $("#formSearchMovieTV").on("submit",function(event) {
     event.preventDefault();
@@ -10,7 +12,6 @@ $(document).ready(function () {
   });
 
   function searchMovieTV(searchTerm) {
-    console.log("did I get here?");
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -18,7 +19,7 @@ $(document).ready(function () {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-        "x-rapidapi-key": apiKey
+        "x-rapidapi-key": utelly_apiKey
       }
     }
     $.ajax(settings).then(function (response) {
@@ -27,8 +28,9 @@ $(document).ready(function () {
       $("#countResults").text(response.results.length);
       $.each(response.results, function (index, result) {
 
-
-        let header = $("<h5>").text(result.name);
+        let titleLink = $("<a>").attr("href","#").text(result.name).attr("data-imdb-id",result.external_ids.imdb.id).click(onTitleClick).attr("data-open","sectionMovieInfo");
+        let header = $("<h5>").append(titleLink);
+        
         let headerDiv = $("<div>").addClass("card-divider").append(header);
 
         let image = $("<img>").attr("src", result.picture);
@@ -51,6 +53,45 @@ $(document).ready(function () {
         $("#cards").append(card);
       });
       console.log(response);
+    });
+  }
+
+  function onTitleClick(event) {
+    console.log("click");
+    var modal = $("#sectionMovieInfo");
+    modal.empty();
+    $.ajax({
+      url: "http://www.omdbapi.com/?apikey=8cca386c&i=" + $(this).data("imdb-id"),
+      method: "get"
+    }).done(function(response) {
+      var yearSpan = $("<small>").text("("+response.Year+")");
+      var titleDiv = $("<h2>").text(response.Title).append(yearSpan).addClass("cell");
+
+      var rating = $("<span>").text(response.Rated).addClass("cell label secondary small-2 marginalizedLabel");
+      var runtime = $("<span>").text(response.Runtime).addClass("cell label secondary small-2 marginalizedLabel");
+      var glanceList = $("<div>").append(rating,runtime).addClass("cell grid-x align-center");
+      $.each(response.Genre.split(", "),(element,item)=>{
+        console.log(item);
+        let genreType = $("<span>").text(item).addClass("cell label secondary small-2 marginalizedLabel");
+        glanceList.append(genreType);
+      });
+      /*response.Genre.split(", ").forEach(element => {
+        let genreType = $("<span>").text(element).addClass("badge");
+        glanceList.add(genreType);
+      });*/
+
+      var starsDiv = $("<div>").text("Starring: " + response.Actors);
+      var plotP = $("<p>").text(response.Plot).addClass("lead");
+      var plotCallout = $("<div>").addClass("cell callout secondary").append(plotP);
+      var posterDiv = $("<img>").attr("src",response.Poster).addClass("moviePoster");
+
+      var contents = $("<div>").addClass("grid-y grid-margin-y align-center").append(titleDiv,posterDiv,glanceList,starsDiv,plotCallout);
+      modal.append(contents);
+      
+      //var popup = new Foundation.Reveal($("#sectionMovieInfo"));
+      popup.open();
+
+      //$("#sectionMovieInfo").foundation('open'); // <---- from documentation... doesn't work
     });
   }
 });
