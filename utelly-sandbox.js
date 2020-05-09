@@ -28,7 +28,7 @@ $(document).ready(function () {
       $("#countResults").text(response.results.length);
       $.each(response.results, function (index, result) {
 
-        let titleLink = $("<a>").attr("href","#").text(result.name).attr("data-imdb-id",result.external_ids.imdb.id).click(onTitleClick).attr("data-open","sectionMovieInfo");
+        let titleLink = $("<a>").attr("href","#").text(result.name).attr("data-imdb-id",result.external_ids.imdb.id).click(onTitleClick).attr("data-open","sectionMovieInfo").addClass("entertainmentTitle");
         let header = $("<h5>").append(titleLink);
         
         let headerDiv = $("<div>").addClass("card-divider").append(header);
@@ -85,7 +85,10 @@ $(document).ready(function () {
       var plotCallout = $("<div>").addClass("cell callout secondary").append(plotP);
       var posterDiv = $("<img>").attr("src",response.Poster).addClass("moviePoster");
 
-      var contents = $("<div>").addClass("grid-y grid-margin-y align-center").append(titleDiv,posterDiv,glanceList,starsDiv,plotCallout);
+      var times = $("<span>").attr("aria-hidden","true").html("&times;");
+      var closeButton = $("<button>").addClass("close-button").attr("aria-label","close modal").attr("type","button").append(times).attr("data-close","");
+
+      var contents = $("<div>").addClass("grid-y grid-margin-y align-center").append(closeButton,titleDiv,posterDiv,glanceList,starsDiv,plotCallout);
       modal.append(contents);
       
       //var popup = new Foundation.Reveal($("#sectionMovieInfo"));
