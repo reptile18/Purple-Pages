@@ -61,7 +61,7 @@ $(document).ready(function () {
     var modal = $("#sectionMovieInfo");
     modal.empty();
     $.ajax({
-      url: "http://www.omdbapi.com/?apikey=8cca386c&i=" + $(this).data("imdb-id"),
+      url: "https://www.omdbapi.com/?apikey=8cca386c&i=" + $(this).data("imdb-id"),
       method: "get"
     }).done(function(response) {
       var yearSpan = $("<small>").text("("+response.Year+")");
