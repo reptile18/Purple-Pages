@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stlyesheet" href="css/icons/foundation-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/vendor/foundation.min.js"></script>
     <title>watchESPN api</title>
 </head>
-<body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        $.ajax({
-	url: "http://api.espn.com/v1/watch/listings",
-	data: {
-		// enter your developer api key here
-		apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
-		// the type of data you're expecting back from the api
-		_accept: "application/json"
-	},
-	dataType: "jsonp",
-	success: function(data) {
-		// create an unordered list of headlines
-		var ul = $('<ul/>');
-		$.each(data.listings, function() {
-			var li = $('<li/>').text(this.name);
-			ul.append(li)
-		});
-        $.each(data.listings, function() {
-			var li = $('<li/>').text(this.startTime);
-			ul.append(li)
-		});
-        $.each(data.listings, function() {
-			var li = $('<li/>').text(this.program.sportLevel);
-			ul.append(li)
-		});
-        $.each(data.listings, function() {
-			var li = $('<li/>').text(this.competitors);
-			ul.append(li)
-		});
-        $.each(data.categories, function() {
-			var li = $('<li/>').text(this.sportId);
-			ul.append(li)
-		});
-		// append this list to the document body
-		$('body').append(ul);
-	},
-	error: function() {
-		 // handle the error
-	}
-    });
-    </script>
+
+<body class="grid-container">
+    <main class="grid-x grid-margin-x">
+        <aside class="cell medium-6 large-4">
+            <div class="input-group">
+                <input class="input-group-field" id="inputSearch" type="text"
+                    placeholder="Let's find out what's on ESPN">
+                <button class="input-group-button button" type="submit"><i class="fi-magnifying-glass"></i></button>
+            </div>
+        </aside>
+        <article class="cell medium-6 large-8">
+            <script>
+                $.ajax({
+                    url: "http://api.espn.com/v1/watch/listings",
+                    data: {
+                        // enter your developer api key here
+                        apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
+                        // the type of data you're expecting back from the api
+                        _accept: "application/json"
+                    },
+                    dataType: "jsonp",
+                    success: function (data) {
+                        // create an unordered list of headlines
+                        var ul = $('<ul/>');
+                        $.each(data.listings, function () {
+                            var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts.name);
+                            ul.append(li);
+                        });
+                        $.each(data.listings, function () {
+                            var li = $('<li/>').text(this.program.sportLevel);
+                            ul.append(li)
+                        });
+                        $.each(data.listings, function () {
+                            var li = $('<li/>').text(this.competitors);
+                            ul.append(li)
+                        });
+                        // append this list to the document body
+                        $('article').append(ul);
+                    },
+                    error: function () {
+                        // handle the error
+                    }
+                });
+            </script>
+        </article>
+    </main>
 </body>
 </html>

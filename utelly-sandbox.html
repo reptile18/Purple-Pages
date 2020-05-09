@@ -14,9 +14,9 @@
     <main class="grid-x grid-margin-x">
       <aside class="cell large-4">
         <form id="formSearchMovieTV">
-          <label>Search for a movie or tv show: </label>
+          <label id="searchLabel" class="searchLabel" for="inputSearch">Search for a movie or tv show: </label>
           <div class="input-group">
-            <input class="input-group-field" id="inputSearch" type="text" placeholder="Enter the name of a movie or tv show">
+            <input class="input-group-field searchField" id="inputSearch" type="text" placeholder="Enter the name of a movie or tv show" aria-describedby="searchLabel">
             <button class="input-group-button button" type="submit"><i class="fi-magnifying-glass"></i></button>
           </div>
           
@@ -28,7 +28,7 @@
         <div id="cards" class="grid-x grid-margin-x"></div>
         
       </article>
-      <section id="sectionMovieInfo" class="reveal" data-reveal>
+      <section id="sectionMovieInfo" class="large reveal" data-reveal>
       </section>
     </main>
     <script src="utelly-sandbox.js"></script>
