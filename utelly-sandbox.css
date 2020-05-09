@@ -10,3 +10,19 @@
 .moviePoster {
   width:100%;
 }
+
+.searchLabel {
+  font-size: 1em;
+}
+
+@media screen and (max-width: 63.9375em) {
+  body {
+    font-size: 3em;
+  }
+  .searchField {
+    font-size: 0.9em;
+  }
+  /*.searchLabel {
+    font-size: 3em;
+  }*/
+}
