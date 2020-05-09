@@ -3,6 +3,7 @@
   background-color: purple !important;
   padding: 2rem 2rem !important;
   color: floralwhite !important;
+  text-align: left !important;;
 }
 
 .menu {
@@ -16,7 +17,14 @@
   font-weight: bold !important;
   font-family: Arial, Helvetica, sans-serif !important;
 }
-.menu .li .a{
+a {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: goldenrod !important;
+}
+a:hover {
+  color: aquamarine !important;
   font-size: 20px !important;
   font-weight: bold !important;
   font-family: Arial, Helvetica, sans-serif !important;
