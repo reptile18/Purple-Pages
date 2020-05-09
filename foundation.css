@@ -1,11 +1,32 @@
-
-.topbar{
-  background-color:  #2c3840;
-  padding: 2rem 2.5rem;
+.top-bar{
+  background-color: purple !important;
+  padding: 2rem 2rem !important;
+  color: floralwhite !important;
+  text-align: left !important;;
 }
 
+.menu {
+  text-align: left !important;
+  color: floralwhite !important;
+  background-color:purple !important;
+  
+}
 .menu-text{
-  text-align: start;
+  font-size: 36px !important;
+  font-weight: bold !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+a {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: goldenrod !important;
+}
+a:hover {
+  color: aquamarine !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 body {
     display: block;
