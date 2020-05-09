@@ -1,0 +1,28 @@
+
+.topbar{
+  background-color:  #2c3840;
+  padding: 2rem 2.5rem;
+}
+
+.menu-text{
+  text-align: start;
+}
+body {
+    display: block;
+        margin: 0;
+        padding: 0;
+        background: #fefefe;
+        background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(254, 254, 254);
+        font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #0a0a0a;
+        -webkit-font-smoothing: antialiased;
+    }
