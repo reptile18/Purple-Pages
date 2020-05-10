@@ -13,6 +13,23 @@
 </head>
 
 <body class="grid-container">
+    <div class="top-bar">
+        <div class="row">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li>
+                        <h2><i class="fi-play-video"></i></h2>
+                    </li>
+                    <li class="menu-text">
+                        <h3>Purple Pages</h3>
+                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">TV/Film</a></li>
+                    <li><a href="espn.html">Sports</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <main class="grid-x grid-margin-x">
         <aside class="cell medium-6 large-4">
             <div class="input-group">
@@ -36,7 +53,7 @@
                         // create an unordered list of headlines
                         var ul = $('<ul/>');
                         $.each(data.listings, function () {
-                            var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts.name);
+                            var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts["name"]);
                             ul.append(li);
                         });
                         $.each(data.listings, function () {
@@ -58,4 +75,5 @@
         </article>
     </main>
 </body>
+
 </html>
