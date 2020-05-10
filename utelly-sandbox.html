@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/icons/foundation-icons.css">
-    <link rel="stylesheet" href="utelly-sandbox.css">
-    <!--<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/vendor/foundation.min.js"></script>
-  </head>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/icons/foundation-icons.css">
+  <link rel="stylesheet" href="utelly-sandbox.css">
+  <link rel="stylesheet" href="foundation.css" />
+  <!--<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!--<script src="js/vendor/foundation.min.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+</head>
 
-  <body class="grid-container">
+<body class="">
+  <!-- Start Top Bar -->
+  <!-- Start Top Bar -->
+  <div class="top-bar">
+    <div class="row">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li><h2><i class="fi-play-video"></i></h2></li>
+          <li class="menu-text"><h3>Purple Pages</h3></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="utelly-sandbox.html">TV/Film</a></li>
+              <li><a href="espn.html">Sports</a></li>
+            </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Top Bar -->
+  <!-- End Top Bar -->
+  <div class="grid-container">
     <main class="grid-x grid-margin-x">
-      <aside class="cell large-4">
+      <aside class="cell medium-4">
         <form id="formSearchMovieTV">
           <label id="searchLabel" class="searchLabel" for="inputSearch">Search for a movie or tv show: </label>
           <div class="input-group">
-            <input class="input-group-field searchField" id="inputSearch" type="text" placeholder="Enter the name of a movie or tv show" aria-describedby="searchLabel">
+            <input class="input-group-field searchField" id="inputSearch" type="text"
+              placeholder="Enter the name of a movie or tv show" aria-describedby="searchLabel">
             <button class="input-group-button button" type="submit"><i class="fi-magnifying-glass"></i></button>
           </div>
-          
+
         </form>
       </aside>
-      <article id="resultsSection" class="cell large-8 invisible">
+      <article id="resultsSection" class="cell medium-8 invisible">
         <h2>Results</h2>
-        <small>Your search for <span id="echoSearchTerm"></span> returned <span id="countResults"></span> results.</small>
+        <small>Your search for <span id="echoSearchTerm"></span> returned <span id="countResults"></span>
+          results.</small>
         <div id="cards" class="grid-x grid-margin-x"></div>
-        
+
       </article>
       <section id="sectionMovieInfo" class="large reveal" data-reveal>
       </section>
     </main>
-    <script src="utelly-sandbox.js"></script>
-  </body>
+  </div>
+  <script src="utelly-sandbox.js"></script>
+</body>
 
 </html>
