@@ -7,6 +7,8 @@ $(document).ready(function () {
 
   $("#formSearchMovieTV").on("submit",function(event) {
     event.preventDefault();
+    $("#inputSearch").prop("disabled",true);
+    $("#buttonSearch").prop("disabled",true);
     $("#cards").empty();
     searchMovieTV($("#inputSearch").val().trim());
   });
@@ -24,6 +26,8 @@ $(document).ready(function () {
     }
     $.ajax(settings).then(function (response) {
       $("#resultsSection").removeClass("invisible");
+      $("#inputSearch").prop("disabled",false);
+      $("#buttonSearch").prop("disabled",false);
       $("#echoSearchTerm").text(response.term);
       $("#countResults").text(response.results.length);
       $.each(response.results, function (index, result) {
