@@ -16,7 +16,16 @@
 }
 
 .navbar {
-  width:100%;
+  width: 100%;
+
+}
+
+.menu a {
+  line-height: 2.5em !important;
+}
+
+.menu i {
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 63.9375em) {
