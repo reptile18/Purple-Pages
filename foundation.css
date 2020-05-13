@@ -47,3 +47,15 @@ body {
         color: #0a0a0a;
         -webkit-font-smoothing: antialiased;
     }
+  .orbit-bullets button {
+    border-radius: 0 !important;;
+    width: 5rem !important;;
+    height: 5rem !important;;
+  }
+  .thumbnail {
+    margin-bottom: 0 !important;;
+    border: 2px solid rgba(0, 0, 0, .2) !important;;
+  }
+  .orbit-previous:hover, .orbit-next:hover, .orbit-previous:focus, .orbit-next:focus {
+    background-color: transparent !important;;
+  }
