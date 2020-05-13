@@ -56,12 +56,10 @@ $(document).ready(function () {
         let card = $("<div>").addClass("card cell large-6").append(headerDiv, imageDiv, locationsDiv);
         $("#cards").append(card);
       });
-      console.log(response);
     });
   }
 
   function onTitleClick(event) {
-    console.log("click");
     var modal = $("#sectionMovieInfo");
     modal.empty();
     $.ajax({
@@ -75,7 +73,6 @@ $(document).ready(function () {
       var runtime = $("<span>").text(response.Runtime).addClass("cell label secondary small-2 marginalizedLabel");
       var glanceList = $("<div>").append(rating,runtime).addClass("cell grid-x align-center");
       $.each(response.Genre.split(", "),(element,item)=>{
-        console.log(item);
         let genreType = $("<span>").text(item).addClass("cell label secondary small-2 marginalizedLabel");
         glanceList.append(genreType);
       });

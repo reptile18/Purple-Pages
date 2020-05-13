@@ -37,7 +37,7 @@
   .entertainmentTitle {
     font-size: 2em;
   }
-  /*.searchLabel {
-    font-size: 3em;
-  }*/
+  .searchLabel {
+    font-size: 1em;
+  }
 }

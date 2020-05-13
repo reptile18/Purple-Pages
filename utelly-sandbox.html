@@ -11,6 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!--<script src="js/vendor/foundation.min.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/motion-ui@1.2.3/dist/motion-ui.min.css" />
 </head>
 
 <body class="">
@@ -33,7 +34,7 @@
   <!-- End Top Bar -->
   <div class="grid-container">
     <main class="grid-x grid-margin-x">
-      <aside class="cell medium-4">
+      <aside class="cell large-4">
         <form id="formSearchMovieTV">
           <label id="searchLabel" class="searchLabel" for="inputSearch">Search for a movie or tv show: </label>
           <div class="input-group">
@@ -43,17 +44,18 @@
 
         </form>
       </aside>
-      <article id="resultsSection" class="cell medium-8 invisible">
+      <article id="resultsSection" class="cell large-8 invisible">
         <h2>Results</h2>
         <small>Your search for <span id="echoSearchTerm"></span> returned <span id="countResults"></span>
           results.</small>
         <div id="cards" class="grid-x grid-margin-x"></div>
 
       </article>
-      <section id="sectionMovieInfo" class="large reveal" data-reveal>
-      </section>
+      
     </main>
   </div>
+  <section id="sectionMovieInfo" class="reveal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+  </section>
   <script src="utelly-sandbox.js"></script>
 </body>
 
