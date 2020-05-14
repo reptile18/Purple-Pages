@@ -74,19 +74,20 @@
                 // create an unordered list of headlines
                 var ul = $('<ul/>');
                 $.each(data.listings, function () {
-                    var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts[name] + " " + this.thumbnails.large);
+                    var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts[name]);
                     var disc = $('<li/>').text(this.description);
-                    var image = $("<img>").attr("src", this.thumbnails.small);
+                    var image = $("<img>").attr("src", this.thumbnails.medium.href);
                     ul.append(li, disc, image);
                     console.log(this);
                 });
-                // append this list to the document body
-                $('article').append(ul);
-                console.log(data);
-            },
-            error: function () {
-                // handle the error
-            }
+                console.log(this);
+        // append this list to the document body
+        $('article').append(ul);
+        console.log(data);
+    },
+        error: function () {
+            // handle the error
+        }
         });
     });
 </script>
