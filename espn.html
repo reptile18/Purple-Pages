@@ -56,7 +56,6 @@
     </div>
 </body>
 <script type="text/javascript">
-    console.log($("#espnSearch").html());
     $("#espnSearch").on("submit", function (event) {
         event.preventDefault();
         $('article').empty();
@@ -74,10 +73,18 @@
                 // create an unordered list of headlines
                 var ul = $('<ul/>');
                 $.each(data.listings, function () {
-                    var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts[name]);
-                    var disc = $('<li/>').text(this.description);
+                    console.log(this.broadcasts);
+                    var li = $('<li/>').text(this.name + " at " + Date(this.startTime).toLocaleString() + " on " + this.broadcasts[0].name);
+                    var disc;
+                    if (this.description !== "") {
+                        disc = $('<li/>').text(this.description);
+                    }
+                    
+                    var link = $('<a>').attr("href",this.links.web.href);
                     var image = $("<img>").attr("src", this.thumbnails.medium.href);
-                    ul.append(li, disc, image);
+                    link.append(image);
+                    var hr = $("<hr>")
+                    ul.append(li, disc, link,hr);
                     console.log(this);
                 });
                 console.log(this);
