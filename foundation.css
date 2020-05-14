@@ -59,3 +59,21 @@ body {
   .orbit-previous:hover, .orbit-next:hover, .orbit-previous:focus, .orbit-next:focus {
     background-color: transparent !important;;
   }
+  @media screen and (min-width: 640px) {
+    .menu-centered {
+      text-align: left;
+    }
+  }.navbar {
+    width:100%;
+  }
+  
+  .menu a {
+    line-height: 2.5em !important;
+  }
+  
+  .menu i {
+    vertical-align: middle;
+  }
+  
+
+  
