@@ -49,7 +49,7 @@ $(document).ready(function () {
           let link = location.url;
 
           let iconImg = $("<img>").attr("src", icon).addClass("locationIcon");
-          let locationEl = $("<a>").addClass("cell small-6 large-4").attr("href", link).attr("title", title).html(iconImg);
+          let locationEl = $("<a>").addClass("cell small-4 large-4").attr("href", link).attr("title", title).html(iconImg);
           locationsDiv.append(locationEl);
         });
 
@@ -82,7 +82,7 @@ $(document).ready(function () {
       });*/
 
       var starsDiv = $("<div>").text("Starring: " + response.Actors);
-      var plotP = $("<p>").text(response.Plot).addClass("lead");
+      var plotP = $("<p>").text(response.Plot).addClass("lead plotText");
       var plotCallout = $("<div>").addClass("cell callout secondary").append(plotP);
       var posterDiv = $("<img>").attr("src",response.Poster).addClass("moviePoster");
 
