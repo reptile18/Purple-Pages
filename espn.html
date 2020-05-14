@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
         integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stlyesheet" href="css/icons/foundation-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/vendor/foundation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="foundation.css">
+    <link rel="stylesheet" href="css/icons/foundation-icons.css">
+    <link rel="stylesheet" href="espn.css">
     <title>watchESPN api</title>
+
 </head>
 
-<body class="grid-container">
+<body class="">
     <div class="top-bar">
         <div class="row">
             <div class="top-bar-left">
@@ -24,56 +31,65 @@
                         <h3>Purple Pages</h3>
                     </li>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="#">TV/Film</a></li>
+                    <li><a href="utelly-sandbox.html">TV/Film</a></li>
                     <li><a href="espn.html">Sports</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <main class="grid-x grid-margin-x">
-        <aside class="cell medium-6 large-4">
-            <div class="input-group">
-                <input class="input-group-field" id="inputSearch" type="text"
-                    placeholder="Let's find out what's on ESPN">
-                <button class="input-group-button button" type="submit"><i class="fi-magnifying-glass"></i></button>
-            </div>
-        </aside>
-        <article class="cell medium-6 large-8">
-            <script>
-                $.ajax({
-                    url: "http://api.espn.com/v1/watch/listings",
-                    data: {
-                        // enter your developer api key here
-                        apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
-                        // the type of data you're expecting back from the api
-                        _accept: "application/json"
-                    },
-                    dataType: "jsonp",
-                    success: function (data) {
-                        // create an unordered list of headlines
-                        var ul = $('<ul/>');
-                        $.each(data.listings, function () {
-                            var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts["name"]);
-                            ul.append(li);
-                        });
-                        $.each(data.listings, function () {
-                            var li = $('<li/>').text(this.program.sportLevel);
-                            ul.append(li)
-                        });
-                        $.each(data.listings, function () {
-                            var li = $('<li/>').text(this.competitors);
-                            ul.append(li)
-                        });
-                        // append this list to the document body
-                        $('article').append(ul);
-                    },
-                    error: function () {
-                        // handle the error
-                    }
-                });
-            </script>
-        </article>
-    </main>
+    <div class="grid-container">
+        <main class="grid-x grid-margin-x">
+            <aside class="cell medium-6 large-4">
+                <form id="espnSearch">
+                    <div class="input-group">
+                        <input class="input-group-field" id="inputSearch" type="text"
+                            placeholder="Let's find out what's on ESPN">
+                        <button class="input-group-button button" type="submit"><i
+                                class="fi-magnifying-glass"></i></button>
+                    </div>
+                </form>
+            </aside>
+            <article class="cell medium-6 large-8">
+            </article>
+            <noscript></noscript>
+        </main>
+    </div>
 </body>
+<script type="text/javascript">
+    console.log($("#espnSearch").html());
+    $("#espnSearch").on("submit", function (event) {
+        event.preventDefault();
+        $('article').empty();
+        $.ajax({
+            url: "https://api.espn.com/v1/watch/listings?" + "&keywords=" + $("#inputSearch").val().trim(),
+            data: {
+                // enter your developer api key here
+                apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
+                // the type of data you're expecting back from the api
+                _accept: "application/json"
+            },
+            dataType: "jsonp",
+
+            success: function (data) {
+                // create an unordered list of headlines
+                var ul = $('<ul/>');
+                $.each(data.listings, function () {
+                    var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts[name]);
+                    var disc = $('<li/>').text(this.description);
+                    var image = $("<img>").attr("src", this.thumbnails.medium.href);
+                    ul.append(li, disc, image);
+                    console.log(this);
+                });
+                console.log(this);
+        // append this list to the document body
+        $('article').append(ul);
+        console.log(data);
+    },
+        error: function () {
+            // handle the error
+        }
+        });
+    });
+</script>
 
 </html>
