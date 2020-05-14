@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/icons/foundation-icons.css">
     <link rel="stylesheet" href="espn.css">
     <title>watchESPN api</title>
+
 </head>
 
 <body class="">
@@ -39,92 +40,55 @@
     <div class="grid-container">
         <main class="grid-x grid-margin-x">
             <aside class="cell medium-6 large-4">
-                <div class="input-group">
-                    <input class="input-group-field" id="inputSearch" type="text"
-                        placeholder="Let's find out what's on ESPN">
-                    <button class="input-group-button button" type="submit"><i class="fi-magnifying-glass"></i></button>
-                    <script>
-                        $.ajax({
-                            url: "http://api.espn.com/v1/watch/listings",
-                            data: {
-                                // enter your developer api key here
-                                apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
-                                // the type of data you're expecting back from the api
-                                _accept: "application/json"
-                            },
-                            dataType: "jsonp",
-
-                            success: function (data) {
-                                // create an unordered list of headlines
-                                var ul = $('<ul/>');
-                                $.each(data.listings, function () {
-                                    var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts[name] + " " + this.thumbnails.large);
-                                    var disc = $('<li/>').text(this.description);
-                                    var image = $("<img>").attr("src", this.thumbnails.small);
-                                    ul.append(li, disc, image);
-                                    console.log(this);
-                                });
-                                // append this list to the document body
-                                $('noscript').append(ul);
-                            },
-                            error: function () {
-                                // handle the error
-                            }
-                        });
-                    </script>
-                </div>
+                <form id="espnSearch">
+                    <div class="input-group">
+                        <input class="input-group-field" id="inputSearch" type="text"
+                            placeholder="Let's find out what's on ESPN">
+                        <button class="input-group-button button" type="submit"><i
+                                class="fi-magnifying-glass"></i></button>
+                    </div>
+                </form>
             </aside>
             <article class="cell medium-6 large-8">
-                <script>
-                    import java.text.SimpleDateFormat;
-                    import java.util.Date;
-                    import java.util.TimeZone;
-
-                    public class ISO8601DateParser {
-                        public static Date parse(String input) throws java.text.ParseException {
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz");
-
-                        if (input.endsWith("Z")) {
-                            input = input.substring(0, input.length() - 1) + "GMT-00:00";
-                        } else {
-                            int inset = 6;
-                            String s0 = input.substring(0, input.length() - inset);
-                            String s1 = input.substring(input.length() - inset, input.length());
-                            input = s0 + "GMT" + s1;
-                        }
-                        return df.parse(input);
-                    }
-
-                public static String toString(Date date) {
-
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz");
-
-                        TimeZone tz = TimeZone.getTimeZone("UTC");
-
-                        df.setTimeZone(tz);
-
-                        String output = df.format(date);
-
-                        int inset0 = 9;
-                        int inset1 = 6;
-
-                        String s0 = output.substring(0, output.length() - inset0);
-                        String s1 = output.substring(output.length() - inset1, output.length());
-
-                        String result = s0 + s1;
-
-                        result = result.replaceAll("UTC", "+00:00");
-
-                        return result;
-
-                    }
-
-}
-                </script>
             </article>
             <noscript></noscript>
         </main>
     </div>
 </body>
+<script type="text/javascript">
+    console.log($("#espnSearch").html());
+    $("#espnSearch").on("submit", function (event) {
+        event.preventDefault();
+        $('article').empty();
+        $.ajax({
+            url: "https://api.espn.com/v1/watch/listings?" + "&keywords=" + $("#inputSearch").val().trim(),
+            data: {
+                // enter your developer api key here
+                apikey: "bb5eb7a35bmshabb5f1c897d350bp18cc9fjsncf7d95fbbb2",
+                // the type of data you're expecting back from the api
+                _accept: "application/json"
+            },
+            dataType: "jsonp",
+
+            success: function (data) {
+                // create an unordered list of headlines
+                var ul = $('<ul/>');
+                $.each(data.listings, function () {
+                    var li = $('<li/>').text(this.name + " at " + this.startTime + " on " + this.broadcasts[name] + " " + this.thumbnails.large);
+                    var disc = $('<li/>').text(this.description);
+                    var image = $("<img>").attr("src", this.thumbnails.small);
+                    ul.append(li, disc, image);
+                    console.log(this);
+                });
+                // append this list to the document body
+                $('article').append(ul);
+                console.log(data);
+            },
+            error: function () {
+                // handle the error
+            }
+        });
+    });
+</script>
 
 </html>
