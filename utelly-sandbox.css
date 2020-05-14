@@ -1,5 +1,6 @@
 .locationIcon {
   height: 30px;
+  filter: brightness(0) invert() ;
 }
 
 .marginalizedLabel {
@@ -25,6 +26,27 @@
 
 .menu i {
   vertical-align: middle;
+}
+
+.searchButton {
+  background-color: purple;
+}
+
+.searchButton:disabled {
+  background-color: purple;
+}
+
+.resultCard {
+  border-radius: 10px;
+  border-color: purple;
+}
+
+.locationsDiv {
+  background-color: purple;
+}
+
+.cardHeader {
+  background-color: purple;
 }
 
 @media screen and (max-width: 63.9375em) {
