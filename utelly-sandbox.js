@@ -35,13 +35,13 @@ $(document).ready(function () {
         let titleLink = $("<a>").attr("href","#").text(result.name).attr("data-imdb-id",result.external_ids.imdb.id).click(onTitleClick).attr("data-open","sectionMovieInfo").addClass("entertainmentTitle");
         let header = $("<h5>").append(titleLink);
         
-        let headerDiv = $("<div>").addClass("card-divider").append(header);
+        let headerDiv = $("<div>").addClass("card-divider cardHeader").append(header);
 
         let image = $("<img>").attr("src", result.picture);
         let imageDiv = $("<div>").addClass("card-section").append(image);
 
         //let locationsDiv = $("<div>").addClass("card-section flex-container align-spaced");
-        let locationsDiv = $("<div>").addClass("card-section grid-x grid-margin-x grid-margin-y");
+        let locationsDiv = $("<div>").addClass("card-section grid-x grid-margin-x grid-margin-y locationsDiv align-center");
 
         $.each(result.locations, function (index, location) {
           let icon = location.icon;
@@ -49,11 +49,11 @@ $(document).ready(function () {
           let link = location.url;
 
           let iconImg = $("<img>").attr("src", icon).addClass("locationIcon");
-          let locationEl = $("<a>").addClass("cell small-6 large-4").attr("href", link).attr("title", title).html(iconImg);
+          let locationEl = $("<a>").addClass("cell small-4 large-4").attr("href", link).attr("title", title).html(iconImg);
           locationsDiv.append(locationEl);
         });
 
-        let card = $("<div>").addClass("card cell large-6").append(headerDiv, imageDiv, locationsDiv);
+        let card = $("<div>").addClass("card cell large-6 resultCard").append(headerDiv, imageDiv, locationsDiv);
         $("#cards").append(card);
       });
     });
@@ -82,7 +82,7 @@ $(document).ready(function () {
       });*/
 
       var starsDiv = $("<div>").text("Starring: " + response.Actors);
-      var plotP = $("<p>").text(response.Plot).addClass("lead");
+      var plotP = $("<p>").text(response.Plot).addClass("lead plotText");
       var plotCallout = $("<div>").addClass("cell callout secondary").append(plotP);
       var posterDiv = $("<img>").attr("src",response.Poster).addClass("moviePoster");
 

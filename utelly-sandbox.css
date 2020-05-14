@@ -1,5 +1,6 @@
 .locationIcon {
   height: 30px;
+  filter: brightness(0) invert() ;
 }
 
 .marginalizedLabel {
@@ -27,17 +28,70 @@
   vertical-align: middle;
 }
 
+.searchButton {
+  background-color: purple;
+}
+
+.searchButton:disabled {
+  background-color: purple;
+}
+
+.resultCard {
+  border-radius: 5px;
+  border-color: purple;
+}
+
+.locationsDiv {
+  background-color: purple;
+}
+
+.cardHeader {
+  background-color: purple;
+}
+
+.card-section {
+  text-align: center;
+}
+
 @media screen and (max-width: 63.9375em) {
   body {
     font-size: 3em;
   }
   .searchField {
-    font-size: 0.9em;
+    font-size: 0.5em;
   }
   .entertainmentTitle {
     font-size: 2em;
   }
   .searchLabel {
+    font-size: 0.5em;
+  }
+  .plotText {
     font-size: 1em;
+  }
+
+}
+
+/* @media print, screen and (min-width: 601px) {
+  .reveal {
+    width: 25% !important;
+  }
+} */
+
+@media print, screen and (min-width: 64em) {
+  .reveal {
+    width: 100% !important;
+  }
+}
+
+@media print, screen and (min-width: 40em) {
+  .reveal {
+    width: 100% !important;
+  }
+}
+
+@media print, screen and (min-width: 100em) {
+  .reveal {
+    width: 25% !important;
   }
 }
