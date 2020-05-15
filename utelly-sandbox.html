@@ -45,10 +45,11 @@
 
         </form>
       </aside>
-      <article id="resultsSection" class="cell large-8 invisible">
+      <article id="resultsSection" class="cell large-8">
         <h2>Results</h2>
-        <small>Your search for <span id="echoSearchTerm"></span> returned <span id="countResults"></span>
+        <small id="spanResults" class="hide">Your search for <span id="echoSearchTerm"></span> returned <span id="countResults"></span>
           results.</small>
+        <small id="spanSearching" class="hide">Searching...</small>
         <div id="cards" class="grid-x grid-margin-x"></div>
 
       </article>
