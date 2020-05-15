@@ -9,6 +9,8 @@ $(document).ready(function () {
     event.preventDefault();
     $("#inputSearch").prop("disabled",true);
     $("#buttonSearch").prop("disabled",true);
+    $("#spanSearching").removeClass("hide");
+    $("#spanResults").addClass("hide");
     $("#cards").empty();
     searchMovieTV($("#inputSearch").val().trim());
   });
@@ -30,6 +32,8 @@ $(document).ready(function () {
       $("#buttonSearch").prop("disabled",false);
       $("#echoSearchTerm").text(response.term);
       $("#countResults").text(response.results.length);
+      $("#spanSearching").addClass("hide");
+      $("#spanResults").removeClass("hide");
       $.each(response.results, function (index, result) {
 
         let titleLink = $("<a>").attr("href","#").text(result.name).attr("data-imdb-id",result.external_ids.imdb.id).click(onTitleClick).attr("data-open","sectionMovieInfo").addClass("entertainmentTitle");
