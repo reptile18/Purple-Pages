@@ -17,9 +17,9 @@ We used jQuery/JavaScript to animate elements and dynamically update our HTML/CS
 ## Process:
 This was our first group project in Github utilizing many branches, pull/merge requests and conflicts, collaborative troubleshooting, stand-up meetings, the kanban board, and solving issues together to render an impressive final product. 
 
-![Home Page](Screen Shot 1.png)
-![Recommendations](Screen Shot 2.png)
-![TV/Film Utelly](Screen Shot 3.png)
-![Pop Up OMDB](Screen Shot 4.png)
-![Sports ESPN](Screen Shot 5.png)
+![Home Page](Screen_Shot_1.png)
+![Recommendations](Screen_Shot_2.png)
+![TV/Film Utelly](Screen_Shot_3.png)
+![Pop Up OMDB](Screen_Shot_4.png)
+![Sports ESPN](Screen_Shot_5.png)
 
