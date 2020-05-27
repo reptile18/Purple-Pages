@@ -7,6 +7,12 @@ $(document).ready(function () {
 
   $("#formSearchMovieTV").on("submit",function(event) {
     event.preventDefault();
+    
+    window.location.href = window.location.href + "?search=" + $("#inputSearch").val().trim();
+    searchMovieTV($("#inputSearch").val().trim());
+  });
+
+  function searchMovieTV(searchTerm) {
     $("#inputSearch").prop("disabled",true);
     $("#buttonSearch").prop("disabled",true);
     $("#resultsSection").removeClass("hide");
@@ -14,10 +20,6 @@ $(document).ready(function () {
     $("#spanResults").addClass("hide");
     $("#initialHelp").addClass("hide");
     $("#cards").empty();
-    searchMovieTV($("#inputSearch").val().trim());
-  });
-
-  function searchMovieTV(searchTerm) {
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -104,4 +106,19 @@ $(document).ready(function () {
       //$("#sectionMovieInfo").foundation('open'); // <---- from documentation... doesn't work
     });
   }
+
+  // onload
+  function searchOnLoad() {
+    const paramArray = window.location.href.split("?")[1].split("=");
+    let term = "";
+    for (let i = 0; i < paramArray.length; i++) {
+      if (paramArray[i] === "search") {
+        term = paramArray[i+1];
+      }
+    }
+    if (term !== "") {
+      searchMovieTV(term);
+    }
+  };
+  searchOnLoad();
 });
