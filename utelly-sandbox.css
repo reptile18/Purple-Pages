@@ -53,6 +53,36 @@
   text-align: center;
 }
 
+.superArrow { 
+  font-size: 15em !important;
+}
+.spanSuperArrow {
+  transform: rotate(-70deg);
+  display: block;
+  width: 0;
+  height: 1%;
+  position: relative;
+  left: 2em;
+  top: 1em;
+}
+.initialHelp {
+  color: lightgray;
+  line-height: 0em;
+  font-size: 2em;
+  border: 5px dashed lightgray;
+  border-radius: 10px;
+  margin-top: 0.5em;
+}
+.initialHelpText {
+  display: block;
+  top:-4em;
+  position: relative;
+  left: -2em;
+}
+.initialHelpContainer {
+  padding-left: 3em;
+}
+
 @media screen and (max-width: 63.9375em) {
   body {
     font-size: 3em;
@@ -69,7 +99,33 @@
   .plotText {
     font-size: 1em;
   }
-
+  .superArrow { 
+    font-size: 5em !important;
+  }
+  .spanSuperArrow {
+    transform: rotate(0);
+    left: 0em;
+    top: 0em;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+  .initialHelp {
+    color: lightgray;
+    line-height: 1em;
+    font-size: 2em;
+    border: 5px dashed lightgray;
+    border-radius: 10px;
+    margin-top: 0em;
+  }
+  .initialHelpText {
+    left: 0;
+    top:0;
+    text-align: center;
+  }
+  .initialHelpContainer {
+    padding-left: 0;
+  }
 }
 
 /* @media print, screen and (min-width: 601px) {
