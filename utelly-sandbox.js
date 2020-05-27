@@ -9,8 +9,10 @@ $(document).ready(function () {
     event.preventDefault();
     $("#inputSearch").prop("disabled",true);
     $("#buttonSearch").prop("disabled",true);
+    $("#resultsSection").removeClass("hide");
     $("#spanSearching").removeClass("hide");
     $("#spanResults").addClass("hide");
+    $("#initialHelp").addClass("hide");
     $("#cards").empty();
     searchMovieTV($("#inputSearch").val().trim());
   });
