@@ -5,16 +5,39 @@ $(document).ready(function () {
   const omdb_apikey = "trilogy"; // "8cca386c" // not active yet
   var popup = new Foundation.Reveal($("#sectionMovieInfo"));
 
-  $("#formSearchMovieTV").on("submit",function(event) {
+  function setHTTPParam(paramName, paramValue) {
+    // clear window.location.href for parameter
+    const httpPieces = window.location.href.split("?");
+    if (httpPieces.length === 2) {
+      const paramPieces = httpPieces[1].split("&");
+      const paramArray = [];
+      let paramString = "";
+      paramPieces.forEach((param) => {
+        let name = param.split("=")[0];
+        let value = param.split("=")[1];
+        if (name === paramName) {
+          value = paramValue;
+        }
+        paramArray.push(name + "=" + value);
+      });
+      window.location.href = httpPieces[0] + "?" + paramArray.join("&");
+    }
+    else if (httpPieces.length === 1) {
+      window.location.href = window.location.href + "?" + paramName + "=" + paramValue;
+    }
+  }
+
+  $("#formSearchMovieTV").on("submit", function (event) {
     event.preventDefault();
-    
-    window.location.href = window.location.href + "?search=" + $("#inputSearch").val().trim();
-    searchMovieTV($("#inputSearch").val().trim());
+    const searchTerm = $("#inputSearch").val().trim()
+
+    setHTTPParam("search",searchTerm);
+    searchMovieTV(searchTerm);
   });
 
   function searchMovieTV(searchTerm) {
-    $("#inputSearch").prop("disabled",true);
-    $("#buttonSearch").prop("disabled",true);
+    $("#inputSearch").prop("disabled", true);
+    $("#buttonSearch").prop("disabled", true);
     $("#resultsSection").removeClass("hide");
     $("#spanSearching").removeClass("hide");
     $("#spanResults").addClass("hide");
@@ -32,17 +55,17 @@ $(document).ready(function () {
     }
     $.ajax(settings).then(function (response) {
       $("#resultsSection").removeClass("invisible");
-      $("#inputSearch").prop("disabled",false);
-      $("#buttonSearch").prop("disabled",false);
+      $("#inputSearch").prop("disabled", false);
+      $("#buttonSearch").prop("disabled", false);
       $("#echoSearchTerm").text(response.term);
       $("#countResults").text(response.results.length);
       $("#spanSearching").addClass("hide");
       $("#spanResults").removeClass("hide");
       $.each(response.results, function (index, result) {
 
-        let titleLink = $("<a>").attr("href","#").text(result.name).attr("data-imdb-id",result.external_ids.imdb.id).click(onTitleClick).attr("data-open","sectionMovieInfo").addClass("entertainmentTitle");
+        let titleLink = $("<a>").attr("href", "#").text(result.name).attr("data-imdb-id", result.external_ids.imdb.id).click(onTitleClick).attr("data-open", "sectionMovieInfo").addClass("entertainmentTitle");
         let header = $("<h5>").append(titleLink);
-        
+
         let headerDiv = $("<div>").addClass("card-divider cardHeader").append(header);
 
         let image = $("<img>").attr("src", result.picture);
@@ -73,14 +96,14 @@ $(document).ready(function () {
     $.ajax({
       url: "https://www.omdbapi.com/?apikey=8cca386c&i=" + $(this).data("imdb-id"),
       method: "get"
-    }).done(function(response) {
-      var yearSpan = $("<small>").text("("+response.Year+")");
+    }).done(function (response) {
+      var yearSpan = $("<small>").text("(" + response.Year + ")");
       var titleDiv = $("<h2>").text(response.Title).append(yearSpan).addClass("cell");
 
       var rating = $("<span>").text(response.Rated).addClass("cell label secondary small-2 marginalizedLabel");
       var runtime = $("<span>").text(response.Runtime).addClass("cell label secondary small-2 marginalizedLabel");
-      var glanceList = $("<div>").append(rating,runtime).addClass("cell grid-x align-center");
-      $.each(response.Genre.split(", "),(element,item)=>{
+      var glanceList = $("<div>").append(rating, runtime).addClass("cell grid-x align-center");
+      $.each(response.Genre.split(", "), (element, item) => {
         let genreType = $("<span>").text(item).addClass("cell label secondary small-2 marginalizedLabel");
         glanceList.append(genreType);
       });
@@ -92,14 +115,14 @@ $(document).ready(function () {
       var starsDiv = $("<div>").text("Starring: " + response.Actors);
       var plotP = $("<p>").text(response.Plot).addClass("lead plotText");
       var plotCallout = $("<div>").addClass("cell callout secondary").append(plotP);
-      var posterDiv = $("<img>").attr("src",response.Poster).addClass("moviePoster");
+      var posterDiv = $("<img>").attr("src", response.Poster).addClass("moviePoster");
 
-      var times = $("<span>").attr("aria-hidden","true").html("&times;");
-      var closeButton = $("<button>").addClass("close-button").attr("aria-label","close modal").attr("type","button").append(times).attr("data-close","");
+      var times = $("<span>").attr("aria-hidden", "true").html("&times;");
+      var closeButton = $("<button>").addClass("close-button").attr("aria-label", "close modal").attr("type", "button").append(times).attr("data-close", "");
 
-      var contents = $("<div>").addClass("grid-y grid-margin-y align-center").append(closeButton,titleDiv,posterDiv,glanceList,starsDiv,plotCallout);
+      var contents = $("<div>").addClass("grid-y grid-margin-y align-center").append(closeButton, titleDiv, posterDiv, glanceList, starsDiv, plotCallout);
       modal.append(contents);
-      
+
       //var popup = new Foundation.Reveal($("#sectionMovieInfo"));
       popup.open();
 
@@ -109,16 +132,18 @@ $(document).ready(function () {
 
   // onload
   function searchOnLoad() {
-    const paramArray = window.location.href.split("?")[1].split("=");
-    let term = "";
-    for (let i = 0; i < paramArray.length; i++) {
-      if (paramArray[i] === "search") {
-        term = paramArray[i+1];
+    if (window.location.href.includes("?")) {
+      const paramArray = window.location.href.split("?")[1].split("=");
+      let term = "";
+      for (let i = 0; i < paramArray.length; i++) {
+        if (paramArray[i] === "search") {
+          term = paramArray[i + 1];
+        }
+      }
+      if (term !== "") {
+        searchMovieTV(term);
       }
     }
-    if (term !== "") {
-      searchMovieTV(term);
-    }
-  };
+  }
   searchOnLoad();
 });
